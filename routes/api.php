@@ -13,14 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('ad', 'AdController', ['except' => [
+Route::resource('ads', 'Api\AdController', ['only' => [
+    'index', 'show'
+]]);
+
+Route::resource('customers', 'Api\CustomerController', ['except' => [
     'create', 'edit'
 ]]);
 
-Route::resource('customer', 'CustomerController', ['except' => [
-    'create', 'edit'
-]]);
-
-Route::resource('pricing-rule', 'PricingRuleController', ['except' => [
+Route::resource('pricing-rules', 'Api\PricingRuleController', ['except' => [
     'create', 'edit'
 ]]);
