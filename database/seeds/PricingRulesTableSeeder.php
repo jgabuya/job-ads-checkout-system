@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\PricingRule;
 
 class PricingRulesTableSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class PricingRulesTableSeeder extends Seeder
         $nike = DB::table('customers')->where('name', 'Nike')->first();
         $ford = DB::table('customers')->where('name', 'Ford')->first();
 
-        DB::table('pricing_rules')->insert([
+        $data = [
             [
                 'customer_id' => $unilever->id,
                 'ad_id' => 'classic',
@@ -59,7 +60,17 @@ class PricingRulesTableSeeder extends Seeder
                 'price' => 389.99,
                 'min_qty' => 3,
                 'continuous' => true
-            ],
-        ]);
+            ]
+        ];
+
+        foreach ($data as $pricingRuleData) {
+            $pricingRule = new PricingRule();
+            $pricingRule->customer_id = $pricingRuleData['customer_id'];
+            $pricingRule->ad_id = $pricingRuleData['ad_id'];
+            $pricingRule->price = $pricingRuleData['price'];
+            $pricingRule->min_qty = $pricingRuleData['min_qty'];
+            $pricingRule->continuous = $pricingRuleData['continuous'];
+            $pricingRule->save();
+        }
     }
 }

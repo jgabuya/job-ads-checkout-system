@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Customer;
 
 class CustomersTableSeeder extends Seeder
 {
@@ -11,12 +12,18 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('customers')->insert([
+        $data = [
             ['name' => 'Unilever'],
             ['name' => 'Apple'],
             ['name' => 'Nike'],
             ['name' => 'Ford']
-        ]);
+        ];
+
+        foreach ($data as $customerData) {
+            $customer = new Customer();
+            $customer->name = $customerData['name'];
+            $customer->save();
+        }
     }
 }
 
