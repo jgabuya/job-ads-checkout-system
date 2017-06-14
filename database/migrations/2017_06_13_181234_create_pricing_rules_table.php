@@ -19,6 +19,7 @@ class CreatePricingRulesTable extends Migration
             $table->string('ad_id');
             $table->decimal('price');
             $table->integer('min_qty');
+            $table->boolean('continuous');
             $table->timestamps();
         });
     }
