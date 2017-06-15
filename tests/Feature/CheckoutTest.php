@@ -84,7 +84,13 @@ class CheckoutTest extends TestCase
     public function testCheckoutUnilever2()
     {
         $customer = Customer::where('name', 'Unilever')->first();
-        $items = ['classic', 'classic', 'classic', 'classic', 'premium'];
+        $items = [
+            'classic',
+            'classic',
+            'classic',
+            'classic',
+            'premium'
+        ];
 
         $response = $this->json('POST', 'api/checkout', [
             'customer_id' => $customer->id,
@@ -125,6 +131,28 @@ class CheckoutTest extends TestCase
      *
      * @return void
      */
+    public function testCheckoutApple2()
+    {
+        $customer = Customer::where('name', 'Apple')->first();
+        $items = ['classic', 'standout', 'standout', 'premium'];
+
+        $response = $this->json('POST', 'api/checkout', [
+            'customer_id' => $customer->id,
+            'items' => $items
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'total' => 1264.96
+            ]);
+    }
+
+    /**
+     * Test checkout for customer Nike
+     *
+     * @return void
+     */
     public function testCheckoutNike()
     {
         $customer = Customer::where('name', 'Nike')->first();
@@ -139,6 +167,107 @@ class CheckoutTest extends TestCase
             ->assertStatus(200)
             ->assertJson([
                 'total' => 1519.96
+            ]);
+    }
+
+    /**
+     * Test checkout for customer Nike
+     *
+     * @return void
+     */
+    public function testCheckoutNike2()
+    {
+        $customer = Customer::where('name', 'Nike')->first();
+        $items = [
+            'classic',
+            'standout',
+            'premium',
+            'premium',
+            'premium',
+            'premium',
+            'premium'
+        ];
+
+        $response = $this->json('POST', 'api/checkout', [
+            'customer_id' => $customer->id,
+            'items' => $items
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'total' => 2492.93
+            ]);
+    }
+
+    /**
+     * Test checkout for customer Ford
+     *
+     * @return void
+     */
+    public function testCheckoutFord()
+    {
+        $customer = Customer::where('name', 'Ford')->first();
+        $items = [
+            'classic',
+            'classic',
+            'classic',
+            'classic',
+            'classic',
+            'classic',
+            'classic',
+            'standout',
+            'standout',
+            'premium',
+            'premium',
+            'premium',
+            'premium',
+            'premium'
+        ];
+
+        $response = $this->json('POST', 'api/checkout', [
+            'customer_id' => $customer->id,
+            'items' => $items
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'total' => 4189.87
+            ]);
+    }
+
+    /**
+     * Test checkout for customer Ford
+     *
+     * @return void
+     */
+    public function testCheckoutFord2()
+    {
+        $customer = Customer::where('name', 'Ford')->first();
+        $items = [
+            'classic',
+            'classic',
+            'classic',
+            'classic',
+            'standout',
+            'standout',
+            'standout',
+            'premium',
+            'premium',
+            'premium',
+            'premium'
+        ];
+
+        $response = $this->json('POST', 'api/checkout', [
+            'customer_id' => $customer->id,
+            'items' => $items
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'total' => 3569.89
             ]);
     }
 }
