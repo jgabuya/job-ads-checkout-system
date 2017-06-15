@@ -16,7 +16,9 @@ class CustomersTableSeeder extends Seeder
             ['name' => 'Unilever'],
             ['name' => 'Apple'],
             ['name' => 'Nike'],
-            ['name' => 'Ford']
+            ['name' => 'Ford'],
+            ['name' => 'Tissot'],
+            ['name' => 'Chase']
         ];
 
         foreach ($data as $customerData) {
