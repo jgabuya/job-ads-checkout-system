@@ -73,7 +73,7 @@ class CustomerController extends Controller
             return response($validator->errors(), 400);
         }
 
-        // Store new customer
+        // Save customer data
         $customer->name = $request->input('name');
         $customer->save();
 
