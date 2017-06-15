@@ -73,8 +73,6 @@ class PricingRuleController extends Controller
      */
     public function update(Request $request, PricingRule $pricingRule)
     {
-        dd($pricingRule->id);
-
         // Validate input
         $validator = Validator::make($request->all(), [
             'customer_id' => 'required|exists:customers,id|unique_with:pricing_rules,ad_id,' . $pricingRule->id,
