@@ -21,6 +21,7 @@ class CreatePricingRulesTable extends Migration
             $table->integer('min_qty');
             $table->boolean('continuous');
             $table->timestamps();
+            $table->unique(['customer_id', 'ad_id']);
         });
     }
 
