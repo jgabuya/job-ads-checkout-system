@@ -22,7 +22,7 @@ class PricingRulesTableSeeder extends Seeder
             [
                 'customer_id' => $unilever->id,
                 'ad_id' => 'classic',
-                'price' => 179.99,
+                'price' => 179.9933,
                 'min_qty' => 3,
                 'continuous' => false
             ],
@@ -43,7 +43,7 @@ class PricingRulesTableSeeder extends Seeder
             [
                 'customer_id' => $ford->id,
                 'ad_id' => 'classic',
-                'price' => 215.99,
+                'price' => 215.992,
                 'min_qty' => 5,
                 'continuous' => false
             ],
