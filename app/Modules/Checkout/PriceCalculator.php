@@ -43,12 +43,12 @@ class PriceCalculator
             // if the number of items satisfies the minimum quantity
             if ($rule && $itemsFilterCount >= $rule->min_qty) {
                 if ($rule->continuous) {
+                    // discount at minimum quantity
+                    $total += $rule->price * $itemsFilterCount;
+                } else {
                     // x for y discount
                     $normalPricesCount = $itemsFilterCount % $rule->min_qty;
                     $total += ($rule->price * ($itemsFilterCount - $normalPricesCount)) + ($item->price * $normalPricesCount);
-                } else {
-                    // discount at minimum quantity
-                    $total += $rule->price * $itemsFilterCount;
                 }
             } else {
                 // add item in its normal price
