@@ -53,7 +53,7 @@ class Checkout
     {
         $order = new Order();
         $order->customer_id = $this->customer->id;
-        $order->items = $this->cart->toArray();
+        $order->items = $this->cart->pluck('id')->toJson();
         $order->total = $this->total();
         $order->save();
 
