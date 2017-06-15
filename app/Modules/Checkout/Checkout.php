@@ -2,35 +2,27 @@
 
 namespace App\Modules\Checkout;
 
-use PriceCalculator;
+use App\Customer;
+use Illuminate\Database\Eloquent\Collection;
 
 class Checkout
 {
     private $cart;
     private $priceCalculator;
-    private $customerId;
+    private $customer;
 
     /**
      * Checkout constructor.
-     * @param \App\Modules\Checkout\PriceCalculator $myPriceCalculator
+     * @param Customer $myCustomer
+     * @param PriceCalculator $myPriceCalculator
      */
-    function __construct(PriceCalculator $myPriceCalculator)
+    function __construct(Customer $myCustomer, PriceCalculator $myPriceCalculator)
     {
         // initialize properties
-        $this->cart = [];
+        $this->cart = collect([]);
+        $this->customer = $myCustomer;
         $this->total = 0;
         $this->priceCalculator = $myPriceCalculator;
-    }
-
-    /**
-     * Sets the customerId property
-     * @param $myCustomerId
-     * @return $this
-     */
-    public function setCustomerId($myCustomerId)
-    {
-        $this->customerId = $myCustomerId;
-        return $this;
     }
 
     /**
@@ -38,18 +30,18 @@ class Checkout
      * @param array $item
      * @return $this
      */
-    public function add(array $item)
+    public function add($item)
     {
-        array_push($this->cart, $item);
+        $this->cart->push($item);
         return $this;
     }
 
     /**
-     * Returs the total price
+     * Returns the total price
      * @return mixed
      */
     public function total()
     {
-        return $this->priceCalculator->total($this->items);
+        return $this->priceCalculator->total($this->customer, $this->cart);
     }
 }

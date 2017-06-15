@@ -24,3 +24,7 @@ Route::resource('customers', 'Api\CustomerController', ['except' => [
 Route::resource('pricing-rules', 'Api\PricingRuleController', ['except' => [
     'create', 'edit'
 ]]);
+
+Route::resource('checkout', 'Api\CheckoutController', ['only' => [
+    'store'
+]]);

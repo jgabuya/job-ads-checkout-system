@@ -3,7 +3,7 @@
 namespace App\Modules\Checkout;
 
 use App\Customer;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class PriceCalculator
 {
@@ -32,10 +32,10 @@ class PriceCalculator
             }
 
             // get rule for customer-item pair
-            $rule = $this->pricingRules->where([
-                            'customer_id' => $customer->id,
-                            'ad_id' => $item->id
-                        ])->first();
+            $rule = $this->pricingRules->first(function ($value, $key) use ($customer, $item) {
+                return $value->customer_id == $customer->id &&
+                        $value->ad_id == $item->id;
+            });
 
             $itemsFilterCount = $items->where('id', $item->id)->count();
 
