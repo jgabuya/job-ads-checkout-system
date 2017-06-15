@@ -58,6 +58,6 @@ class PriceCalculator
             array_push($processedItemIds, $item->id);
         }
 
-        return $total;
+        return round($total, 2);
     }
 }
