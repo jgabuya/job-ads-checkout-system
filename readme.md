@@ -1,51 +1,52 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Job Ads Checkout System
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This application is a RESTful API implementation of a checkout system. It allows the calculation of the total price based on pricing rules on customer-ad relationships.
 
-## About Laravel
+Some of its components are:
+* RESTful endpoints
+* Database migrations
+* Test Cases
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+### Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* PHP >= 5.6.4
+* MySQL Database
+* MySQL PHP Extension
+* OpenSSL PHP Extension
+* PDO PHP Extension
+* Mbstring PHP Extension
+* Tokenizer PHP Extension
+* XML PHP Extension
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+Note: This application must be deployed on document root or virtual host
 
-## Learning Laravel
+### Installation
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+1. Clone repository
+2. Copy the file **.env.example** to **.env** and edit the database and edit the URL and database settings
+3. Go the main directory (where composer.json is located), e.g. `cd job-ads-checkout-system`
+3. Run `composer install`. More details [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
+4. Run `php artisan migrate:refresh --seed` to migrate and seed database tables
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+### Testing
 
-## Laravel Sponsors
+This system has test cases to ensure components are working correctly. To run the test cases, simply run `./vendor/bin/phpunit` from the command line on the main directory.
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
-
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Alternatively, you could also use a HTTP Client such as [Postman](https://www.getpostman.com/) to test the endpoints, as follows:
+* **Ads**
+    * `GET` **api/ads** - Show all ads
+    * `GET` **api/ads/{id}** - Show a specific ad
+* **Customers** 
+    * `GET` **api/customers** - Show all customers
+    * `GET` **api/customers/{id}** - Show a specific customer
+    * `POST` **api/customers** - Create a customer record. Body should contain the format: `{name: <string>}`
+    * `PUT/PATCH` **api/customers/{id}** - Update a customer record. Body should contain: `{name: <string>}`
+    * `DELETE` **api/customers/{id}** - Delete a customer record.
+* **Pricing Rules** 
+    * `GET` **api/pricing-rules** - Show all pricing rules
+    * `GET` **api/pricing-rules/{id}** - Show a specific pricing rule
+    * `POST` **api/pricing-rules** - Create a pricing rule record. Body should contain the format: `{customer_id: <integer>, ad_id: <integer>, price: <decimal>, min_qty: <integer>, continuous: <boolean>}`. The `continuous` field is used to determine whether a pricing rule is in **x for y** format, e.g. 5 for 4 or a **price drops to x when y or more are purchased** format
+    * `PUT/PATCH` **api/pricing-rules/{id}** - Update a specific pricing rule. Body format should be similar above.
+    * `DELETE` **api/pricing-rules/{id}** - Delete a pricing rule record.
+* **Checkout** 
+    * `POST` **api/checkout** - Initiates checkout. Body format should be: `{customer_id <integer>, items: <array of ad ids>}`. A successful response will contain the total price as well as the link to the newly-created **Order** resource
