@@ -39,10 +39,15 @@ class CheckoutController extends Controller
             $priceCalculator
         );
 
+        // Add items to cart
         foreach ($request->input('items') as $adId) {
             $checkout->add(Ad::find($adId));
         }
 
-        return $checkout->total();
+        // Save order to DB
+        return response([
+            'total' => $checkout->total(),
+            'order' => url('orders/' . $checkout->saveOrder())
+        ], 200);
     }
 }

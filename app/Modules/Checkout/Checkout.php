@@ -3,6 +3,7 @@
 namespace App\Modules\Checkout;
 
 use App\Customer;
+use App\Order;
 
 class Checkout
 {
@@ -42,5 +43,20 @@ class Checkout
     public function total()
     {
         return $this->priceCalculator->total($this->customer, $this->cart);
+    }
+
+    /**
+     * Creates an Order DB entry
+     * @return mixed
+     */
+    public function saveOrder()
+    {
+        $order = new Order();
+        $order->customer_id = $this->customer->id;
+        $order->items = $this->cart->toArray();
+        $order->total = $this->total();
+        $order->save();
+
+        return $order->id;
     }
 }
