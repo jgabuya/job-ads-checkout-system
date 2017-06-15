@@ -32,16 +32,17 @@ class CheckoutController extends Controller
             return response($validator->errors(), 400);
         }
 
+        // Initialize checkout class and its dependencies
         $priceCalculator = new PriceCalculator(PricingRule::all());
-        $checkoutModule = new Checkout(
+        $checkout = new Checkout(
             Customer::find($request->input('customer_id')),
             $priceCalculator
         );
 
         foreach ($request->input('items') as $adId) {
-            $checkoutModule->add(Ad::find($adId));
+            $checkout->add(Ad::find($adId));
         }
 
-        return $checkoutModule->total();
+        return $checkout->total();
     }
 }
