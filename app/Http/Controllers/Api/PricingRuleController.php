@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use Validator;
-use Illuminate\Validation\Rule;
 use App\PricingRule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

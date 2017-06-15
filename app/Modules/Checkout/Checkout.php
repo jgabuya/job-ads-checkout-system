@@ -3,7 +3,6 @@
 namespace App\Modules\Checkout;
 
 use App\Customer;
-use Illuminate\Database\Eloquent\Collection;
 
 class Checkout
 {

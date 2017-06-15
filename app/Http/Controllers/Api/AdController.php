@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Ad;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use League\Flysystem\Exception;
 
 class AdController extends Controller
 {
