@@ -3,7 +3,7 @@
 namespace App\Modules\Checkout;
 
 use App\Customer;
-use App\Order;
+use App\AdOrder;
 
 class Checkout
 {
@@ -51,7 +51,7 @@ class Checkout
      */
     public function saveOrder()
     {
-        $order = new Order();
+        $order = new AdOrder();
         $order->customer_id = $this->customer->id;
         $order->items = $this->cart->pluck('id')->toJson();
         $order->total = $this->total();

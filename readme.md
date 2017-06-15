@@ -36,6 +36,9 @@ Alternatively, you could also use a HTTP Client such as [Postman](https://www.ge
 * **Ads**
     * `GET` **api/ads** - Show all ads
     * `GET` **api/ads/{id}** - Show a specific ad
+* **Ad Orders**
+    * `GET` **api/ad-orders** - Show all ad orders
+    * `GET` **api/ad-orders/{id}** - Show a specific ad order
 * **Customers** 
     * `GET` **api/customers** - Show all customers
     * `GET` **api/customers/{id}** - Show a specific customer
@@ -49,4 +52,4 @@ Alternatively, you could also use a HTTP Client such as [Postman](https://www.ge
     * `PUT/PATCH` **api/pricing-rules/{id}** - Update a specific pricing rule. Body format should be similar above.
     * `DELETE` **api/pricing-rules/{id}** - Delete a pricing rule record.
 * **Checkout** 
-    * `POST` **api/checkout** - Initiates checkout. Body format should be: `{customer_id <integer>, items: <array of ad ids>}`. A successful response will contain the total price as well as the link to the newly-created **Order** resource
+    * `POST` **api/checkout** - Initiates checkout. Body format should be: `{customer_id <integer>, items: <array of ad ids>}`. A successful response will contain the total price as well as the link to the newly-created **Ad Order** resource

@@ -17,6 +17,10 @@ Route::resource('ads', 'Api\AdController', ['only' => [
     'index', 'show'
 ]]);
 
+Route::resource('ad-orders', 'Api\AdOrderController', ['only' => [
+    'index', 'show'
+]]);
+
 Route::resource('customers', 'Api\CustomerController', ['except' => [
     'create', 'edit'
 ]]);

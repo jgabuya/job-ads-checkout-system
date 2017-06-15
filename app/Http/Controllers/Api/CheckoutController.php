@@ -47,7 +47,7 @@ class CheckoutController extends Controller
         // Save order to DB
         return response([
             'total' => $checkout->total(),
-            'order' => url('orders/' . $checkout->saveOrder())
+            'order' => url('ad-orders/' . $checkout->saveOrder())
         ], 200);
     }
 }
