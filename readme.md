@@ -22,11 +22,12 @@ Note: This application must be deployed on document root or virtual host
 
 ### Installation
 
-1. Clone repository
-2. Copy the file **.env.example** to **.env** and edit the database and edit the URL and database settings
-3. Go the main directory (where composer.json is located), e.g. `cd job-ads-checkout-system`
-3. Run `composer install`. More details [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
-4. Run `php artisan migrate:refresh --seed` to migrate and seed database tables
+1. Create a database in MySQL
+2. Clone repository
+3. Copy the file **.env.example** to **.env** and edit the URL and database settings
+4. Go the main directory (where composer.json is located), e.g. `cd job-ads-checkout-system`
+5. Run `composer install`. More details [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
+6. Run `php artisan migrate:refresh --seed` to migrate and seed database tables
 
 ### Testing
 
@@ -53,3 +54,7 @@ Alternatively, you could also use a HTTP Client such as [Postman](https://www.ge
     * `DELETE` **api/pricing-rules/{id}** - Delete a pricing rule record.
 * **Checkout** 
     * `POST` **api/checkout** - Initiates checkout. Body format should be: `{customer_id <integer>, items: <array of ad ids>}`. A successful response will contain the total price as well as the link to the newly-created **Ad Order** resource
+
+### Contributing
+
+If you want you contibute, please create an issue or submit a pull request.
