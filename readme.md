@@ -7,18 +7,11 @@ Some of its components are:
 * Database migrations
 * Test Cases
 
-### Requirements
+### Server Requirements
 
-* PHP >= 5.6.4
-* MySQL Database
-* MySQL PHP Extension
-* OpenSSL PHP Extension
-* PDO PHP Extension
-* Mbstring PHP Extension
-* Tokenizer PHP Extension
-* XML PHP Extension
+Your environment must satisfy the requirements of [Laravel 5.4](https://laravel.com/docs/5.4).
 
-Note: This application must be deployed on document root or virtual host
+**Note:** This application must be deployed on document root or virtual host
 
 ### Installation
 
@@ -33,7 +26,7 @@ Note: This application must be deployed on document root or virtual host
 
 This system has test cases to ensure components are working correctly. To run the test cases, simply run `./vendor/bin/phpunit` from the command line on the main directory.
 
-Alternatively, you could also use a HTTP Client such as [Postman](https://www.getpostman.com/) to test the endpoints, as follows:
+Alternatively, you could also use an HTTP Client such as [Postman](https://www.getpostman.com/) to test the endpoints, as follows:
 * **Ads**
     * `GET` **api/ads** - Show all ads
     * `GET` **api/ads/{id}** - Show a specific ad
@@ -57,4 +50,4 @@ Alternatively, you could also use a HTTP Client such as [Postman](https://www.ge
 
 ### Contributing
 
-If you want you contibute, please create an issue or submit a pull request.
+Please create an issue or submit a pull request.
